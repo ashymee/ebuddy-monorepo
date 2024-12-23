@@ -1,6 +1,7 @@
 "use client";
 
 import { Box, Button, CircularProgress, Typography } from "@mui/material";
+import { User } from "@repo/entities/user";
 import { fetchUserData } from "@stores/action";
 import { useRouter } from "next/navigation"; // for redirect
 import React, { useEffect, useState } from "react";

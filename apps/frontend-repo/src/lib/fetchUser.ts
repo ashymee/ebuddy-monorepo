@@ -1,3 +1,4 @@
+import { User } from "@repo/entities/user";
 import { collection, doc, getDocs, updateDoc } from "firebase/firestore";
 import { db } from "./firebase";
 
@@ -8,8 +9,8 @@ export const fetchUserData = async () => {
   return userList;
 };
 
-export const updateUserData = async (userId: string, newData: User) => {
-  const userRef = doc(db, "userId", userId);
+export const updateUserData = async (id: string, newData: User) => {
+  const userRef = doc(db, "id", id);
 
   await updateDoc(userRef, newData as { [x: string]: any });
   const userDoc = doc(db, "USERS");
