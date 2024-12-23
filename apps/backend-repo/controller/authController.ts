@@ -1,5 +1,5 @@
 import { generateToken } from "@config/jwtUtils";
-import { User } from "@entities/user";
+import { User } from "@repo/entities/user";
 import { AuthRepository } from "@repository/authRepository";
 import { Request, Response } from "express";
 import * as admin from "firebase-admin";

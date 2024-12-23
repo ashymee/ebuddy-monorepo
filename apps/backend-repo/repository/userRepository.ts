@@ -1,5 +1,5 @@
 import { db } from "@config/firebaseConfig";
-import { User } from "@entities/user";
+import { User } from "@repo/entities/user";
 import * as admin from "firebase-admin";
 
 export class UserRepository {

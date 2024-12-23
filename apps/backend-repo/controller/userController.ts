@@ -1,4 +1,4 @@
-import { User } from "@entities/user";
+import { User } from "@repo/entities/user";
 import { UserRepository } from "@repository/userRepository";
 import { Request, Response } from "express";
 
