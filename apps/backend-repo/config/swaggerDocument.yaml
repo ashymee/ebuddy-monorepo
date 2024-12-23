@@ -1,0 +1,220 @@
+openapi: 3.1.0
+info:
+  title: eBuddy API Documentation
+  description: |-
+    This is the API documentation for the eBuddy API.
+  termsOfService: https://www.ebuddy.gg/page/terms
+  contact:
+    email: ashymee@gmail.com
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.11
+externalDocs:
+  description: Find out more about eBuddy
+  url: https://www.ebuddy.gg
+servers:
+  - url: http://localhost:5500/
+    description: Development server
+components:
+  securitySchemes:
+    token:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      flows:
+        implicit:
+          authorizationUrl: http://localhost:5500/api/auth/login
+  schemas:
+    User:
+      type: object
+      properties:
+        name:
+          type: string
+          example: ebuddy
+        email:
+          type: string
+          example: ebuddy@mail.com
+        nationality:
+          type: string
+          example: Singapore
+        phone:
+          type: integer
+          format: int64
+          example: 1234567890
+      example:
+        name: ebuddy
+        email: ebuddy@mail.com
+        nationality: Singapore
+        phone: 1234567890
+    Login:
+      type: object
+      properties:
+        email:
+          type: string
+          example: johndoe@example.com
+        password:
+          type: string
+          example: "123456"
+      example:
+        email: johndoe@example.com
+        password: "123456"
+    Message:
+      type: object
+      properties:
+        message:
+          type: string
+          example: "Hello, World!"
+      example:
+        message: "Hello, World!"
+  requestBodies:
+    User:
+      description: User object that needs to be added
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/User"
+    Login:
+      required:
+        - email
+        - password
+      description: User object that needs to be added
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Login"
+paths:
+  /api/auth/register:
+    post:
+      tags:
+        - Authentication
+      summary: Register a new user
+      description: This will automatically add new user to the USERS collection
+      operationId: registerUser
+      requestBody:
+        description: The user to register
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/User"
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+        "400":
+          description: Invalid input
+      x-swagger-router-controller: User
+  /api/auth/login:
+    post:
+      tags:
+        - Authentication
+      summary: Logs user into the system
+      description: Please Login to get the token then copy the token and paste it in the Authorize button
+      operationId: loginUser
+      requestBody:
+        description: The user to login
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Login"
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Login"
+        "400":
+          description: Invalid username/password supplied
+      x-swagger-router-controller: User
+  /api/users/fetch-user-data:
+    get:
+      tags:
+        - Users
+      summary: Fetch users data
+      description: ""
+      operationId: fetchUserData
+      security:
+        - token: []
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/User"
+        "400":
+          description: Invalid input
+      x-swagger-router-controller: User
+  /api/users/fetch-user-data/{id}:
+    get:
+      tags:
+        - Users
+      summary: Fetch user data
+      description: ""
+      operationId: fetchUserData
+      security:
+        - token: []
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: "#/components/schemas/User"
+        "400":
+          description: Invalid input
+      x-swagger-router-controller: User
+  /api/users/update-user-data/{id}:
+    put:
+      tags:
+        - Users
+      summary: Update user data
+      description: ""
+      operationId: updateUserData
+      security:
+        - token: []
+      requestBody:
+        description: The user to update
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/User"
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+        "400":
+          description: Invalid input
+      x-swagger-router-controller: User
+  /api/users/delete-user-data/{id}:
+    delete:
+      tags:
+        - Users
+      summary: Delete user data
+      description: ""
+      operationId: deleteUserData
+      security:
+        - token: []
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: "#/components/schemas/Message"
+        "400":
+          description: Invalid input
+      x-swagger-router-controller: User
