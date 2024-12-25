@@ -31,7 +31,7 @@ export const register = async (req: Request, res: Response): Promise<void> => {
       name,
       email,
       nationality,
-      phone,
+      phone: Number(phone),
     };
 
     // Register user and get UID
