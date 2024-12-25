@@ -5,21 +5,21 @@ import * as admin from "firebase-admin";
 export class UserRepository {
   /**
    * Function to update user data in the Firestore USERS collection
-   * @param userId - User ID
+   * @param id - User ID
    * @param data - User data to update
    */
-  async updateUserData(userId: string, data: Partial<User>): Promise<void> {
-    const userRef = db.collection("USERS").doc(userId);
+  async updateUserData(id: string, data: Partial<User>): Promise<void> {
+    const userRef = db.collection("USERS").doc(id);
     await userRef.update(data); // Update the Firestore document with provided data
   }
 
   /**
    * Function to fetch user data from the Firestore USERS collection
-   * @param userId - User ID
+   * @param id - User ID
    * @returns - The user data
    */
-  async fetchUserData(userId: string): Promise<User | null> {
-    const userRef = db.collection("USERS").doc(userId);
+  async fetchUserData(id: string): Promise<User | null> {
+    const userRef = db.collection("USERS").doc(id);
     const doc = await userRef.get();
 
     if (!doc.exists) {
@@ -43,14 +43,14 @@ export class UserRepository {
 
   /**
    * Function to delete user data from the Firestore USERS collection
-   * @param userId - User ID
+   * @param id - User ID
    */
-  async deleteUserData(userId: string): Promise<void> {
-    const userRef = db.collection("USERS").doc(userId);
+  async deleteUserData(id: string): Promise<void> {
+    const userRef = db.collection("USERS").doc(id);
     await userRef.delete(); // Delete the Firestore document
 
     // Delete user from Firebase Authentication
-    await admin.auth().deleteUser(userId);
+    await admin.auth().deleteUser(id);
   }
 
   /**
