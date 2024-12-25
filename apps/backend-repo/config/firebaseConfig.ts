@@ -1,10 +1,10 @@
-import serviceAccount from "@config/serviceAccount.json";
 import "dotenv/config";
 import * as admin from "firebase-admin";
+import serviceAccount from "./serviceAccount";
 
 // Initialize Firebase Admin SDK
 admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount as admin.ServiceAccount),
+  credential: admin.credential.cert(serviceAccount),
   databaseURL: process.env.DB_URL,
 });
 
