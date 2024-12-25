@@ -1,7 +1,7 @@
 import { login, register } from "@controller/authController";
 import { Router } from "express";
 
-const authRoutes = Router();
+const authRoutes: Router = Router();
 
 /**
  * Route for user registration
