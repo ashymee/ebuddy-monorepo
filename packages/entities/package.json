@@ -2,5 +2,7 @@
   "name": "@repo/entities",
   "version": "0.0.0",
   "private": true,
-  "exports": "./index.ts"
+  "exports": {
+    "./user": "./user.ts"
+  }
 }
