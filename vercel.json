@@ -1,0 +1,13 @@
+{
+  "projects": {
+    "frontend": {
+      "source": "./apps/frontend-repo",
+      "buildCommand": "turbo run build --filter frontend-repo"
+    },
+    "backend": {
+      "source": "./apps/backend-repo",
+      "buildCommand": "turbo run build --filter backend-repo",
+      "outputDirectory": "dist"
+    }
+  }
+}
