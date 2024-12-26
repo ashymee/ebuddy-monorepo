@@ -1,5 +1,6 @@
 "use client";
 
+import { constants } from "@lib/constants";
 import { Box, Button, CircularProgress, Typography } from "@mui/material";
 import { User } from "@repo/entities/user";
 import { fetchUserData } from "@stores/action";
@@ -22,7 +23,7 @@ const HomePage: React.FC = () => {
 
     try {
       const response = await fetch(
-        "http://localhost:5500/api/users/fetch-user-data",
+        `${constants.baseUrl}/api/users/fetch-user-data`,
         {
           method: "GET",
           headers: {

@@ -1,5 +1,6 @@
 "use client";
 
+import { constants } from "@lib/constants";
 import {
   Box,
   Button,
@@ -49,7 +50,7 @@ const RegisterPage: React.FC = () => {
     setLoading(true);
 
     try {
-      const response = await fetch("http://localhost:5500/api/auth/register", {
+      const response = await fetch(`${constants.baseUrl}/api/auth/register`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
