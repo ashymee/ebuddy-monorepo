@@ -1,5 +1,11 @@
 # eBuddy
 
+## Live Preview
+
+> [Front-End](https://ebuddy-monorepo-frontend.vercel.app/)
+
+> [Back-End](https://ebuddy-monorepo-backend.vercel.app/api-docs/)
+
 ## Overview
 
 This backend repository comes with API documentation using Swagger.
