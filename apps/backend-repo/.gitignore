@@ -54,3 +54,4 @@ coverage/
 .temp/
 
 **/serviceAccount.json
+.vercel
